@@ -11,7 +11,7 @@
  The details are as below 
  <br>Order Id : ${oitem.id}
  <br>Name : ${oitem.custName}
- <br>Mobile : ${oitem.custmobile}
+ <br>Mobile : ${oitem.custMobile}
  <br>Item Id : ${oitem.itemId}
  <br>Quantity : ${oitem.quantity}
  

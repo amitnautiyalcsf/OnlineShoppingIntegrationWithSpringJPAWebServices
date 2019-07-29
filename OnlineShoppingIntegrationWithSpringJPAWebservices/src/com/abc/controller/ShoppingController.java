@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.abc.bean.Card;
 import com.abc.bean.Item;
 import com.abc.bean.Order;
+import com.abc.exception.ShoppingException;
 import com.abc.service.ShoppingService;
+import com.abc.util.ShoppingMessage;
 
 @Controller
 public class ShoppingController {
@@ -21,13 +24,20 @@ public class ShoppingController {
 	
 	
 	@RequestMapping(value="/proceed")
-	public String showItems(Model model)
+	public String showItems(Model model) throws ShoppingException
 	{
 		List<Item>itemList= service.getItems();
+	
+		try {
 		model.addAttribute("ilist", itemList);
 		
 		model.addAttribute("sitem", new Item());
-		
+		}
+		catch(Exception e)
+		{
+			throw new ShoppingException(ShoppingMessage.ERROR_IN_DB);
+			
+		}
 		
 		return "display";
 	}
@@ -76,5 +86,15 @@ public class ShoppingController {
 		return "success";
 		
 	}
+	
+	@ExceptionHandler(ShoppingException.class)
+	public String handleErrors(ShoppingException err)
+	{
+		
+		return "shoppingerror";
+		
+	}
+	
+	
 	
 }

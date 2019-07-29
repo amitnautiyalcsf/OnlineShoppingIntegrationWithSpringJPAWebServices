@@ -11,7 +11,7 @@
 <body>
 <c:choose>
 <c:when test="${citem!=null}">
-Card: ${citem}
+
 
 <h1> Purchase Order Form</h1>
 

@@ -29,7 +29,7 @@ public class CardService {
 
 	public boolean validateCard(Card card) {
 		String uri = "http://localhost:9203/details/";
-		boolean valid = true;
+		boolean valid = false;
 		Map<Object, Object> jsonMap = new HashMap<>();
 
 		// call RestFul web service with url
@@ -59,12 +59,15 @@ public class CardService {
 			jsonMap = getJasonMap(val);
 
 			System.out.println("JsonMap : " + jsonMap);
+			Long cvvVal= (Long) jsonMap.get("cvv");
 			
 			// JsonMap : {cvv=0, name=null, cardNo=1234123412341234}
 			
-			if(jsonMap.get("name")==null  || jsonMap.get("expiry")==null)
+			
+			
+			if(jsonMap.get("name")!=null  || jsonMap.get("expiry")!=null && cvvVal!=0)
 			{
-				valid =false;
+				valid =true;
 				
 			}
 
@@ -75,9 +78,7 @@ public class CardService {
 
 			e.printStackTrace();
 		}
-
-		valid = true;
-
+		
 		return valid;
 	}
 

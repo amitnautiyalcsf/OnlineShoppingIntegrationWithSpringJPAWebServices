@@ -43,16 +43,19 @@ border-collapse: collapse;
 </c:forEach>
 
 </table>
+
+<br>
+
+
+<form:form action="placeOrder.obj" modelAttribute="sitem">
+Enter item ID: <form:input path="id" type="text" value=""/><br>
+<input type="submit" value="Place Order"/>
+</form:form>
 </c:when>
 <c:otherwise>
 <h3>No Items Were Found</h3>
 
 </c:otherwise>
 </c:choose>
-<form:form action="placeOrder.obj" modelAttribute="sitem">
-Enter item ID: <form:input path="id" type="text" value=""/><br>
-<input type="submit" value="Place Order"/>
-</form:form>
-
 </body>
 </html>

@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class Order 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String custName;
 	private long custMobile;
